@@ -1,0 +1,77 @@
+[tool.ruff]
+# Под какую версию Python проверять синтаксис и правила
+target-version = "py314"
+
+# Максимальная длина строки
+line-length = 79
+exclude = [
+  "alembic",
+  "__pycache__",
+  "venv",
+]
+
+[tool.ruff.lint]
+# Какие группы правил включены: E - pycodestyle, F - pyflakes, I - сортировка импортов
+select = [
+  "B",      # flake8-bugbear
+  "C4",     # Помогает писать лучшие списки/наборы/словари.
+  "E",      # pycodestyle ошибки
+  "FA",     # Проверяет, используют ли файлы from __future__ import annotations, если тип используется в модуле, который можно переписать с помощью PEP 563.
+  "F",      # pyflakes
+  "G",      # Лучшее использование встроенного модуля логирования
+  "I",      # isort - Сортировка импортов
+  "LOG",    # Проверяет наличие проблем с использованием стандартного модуля логирования.
+  "PL",     # pylint
+  "PYI",    # Правила линтинга для аннотаций типов.
+  "Q",      # Правила линтинга для кавычек
+  "RUF",    # Ruff lint
+  "TCH",    # Переместите только типы импортов в условие проверки типов.
+  "TID",    # Помогает писать более аккуратные импорты.
+  "UP",     # pyupgrade
+  "W",      # pycodestyle предупреждения
+  "SIM",    # flake8-simplify
+]
+
+ignore = ["Q000", "Q003"]
+
+[tool.ruff.format]
+# Использовать ординарные кавычки
+quote-style = "single"
+
+# Использовать пробелы вместо табов
+indent-style = "space"
+
+# Оставлять "магические" висячие запятые для удобного переноса строк
+skip-magic-trailing-comma = false
+
+# Автоматически выбрать стиль перевода строк под среду/файл
+line-ending = "auto"
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = [
+    "fastapi.Depends",
+    "fastapi.Query",
+    "fastapi.Path",
+    "fastapi.Body",
+    "fastapi.Header",
+    "fastapi.Cookie",
+]
+
+[tool.mypy]
+# Какие каталоги проверять по умолчанию
+files = ["app"]
+
+# Под какую версию Python проверять типы
+python_version = "3.14"
+
+# Проверять даже тела функций без полной типизации
+check_untyped_defs = true
+
+# Показывать коды ошибок рядом с сообщениями
+show_error_codes = true
+
+# Предупреждать о лишних type: ignore
+warn_unused_ignores = true
+
+# Не падать на внешних библиотеках без type stubs
+ignore_missing_imports = true
