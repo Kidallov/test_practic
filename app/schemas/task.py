@@ -1,11 +1,9 @@
-from __future__ import annotations
-
 from typing import TYPE_CHECKING
+
+from pydantic import BaseModel, ConfigDict
 
 if TYPE_CHECKING:
     from uuid import UUID
-
-from pydantic import BaseModel, ConfigDict
 
 
 class TaskSchema(BaseModel):
@@ -14,6 +12,11 @@ class TaskSchema(BaseModel):
     id: UUID
     title: str
     completed: bool
+
+
+TaskSchema.model_rebuild(
+    _types_namespace={'UUID': __import__('uuid').UUID},
+)
 
 
 class TaskCreateSchema(BaseModel):

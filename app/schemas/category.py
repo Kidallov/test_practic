@@ -15,6 +15,11 @@ class CategorySchema(BaseModel):
     name: str
 
 
+CategorySchema.model_rebuild(
+    _types_namespace={'UUID': __import__('uuid').UUID},
+)
+
+
 class CategoryCreateSchema(BaseModel):
     name: str
 

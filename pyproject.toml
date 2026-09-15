@@ -75,3 +75,10 @@ warn_unused_ignores = true
 
 # Не падать на внешних библиотеках без type stubs
 ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.ruff.lint.per-file-ignores]
+# Отключаем PLR0913 и PLR0917 только для тестов
+"app/tests/**/*.py" = ["PLR0913", "PLR0917"]
